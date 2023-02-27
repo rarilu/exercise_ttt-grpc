@@ -29,16 +29,32 @@ enum PlayResult {
 	SUCCESS = 5;
 };
 
-// TODO request and response
+message PlayRequest {
+	uint32 row = 1;
+	uint32 column = 2;
+	uint32 player = 3;
+}
+
+message PlayResponse {
+	PlayResult result = 1;
+}
 
 
 // check winner operation
 
-// TODO
+message CheckWinnerRequest {
+	// No arguments
+}
+
+message CheckWinnerResponse {
+	int32 winner = 1; // -1 if none, otherwise player
+}
 
 
 // service
 
 service TTT {
 	rpc CurrentBoard(CurrentBoardRequest) returns (CurrentBoardResponse);
+	rpc Play(PlayRequest) returns (PlayResponse);
+	rpc CheckWinner(CheckWinnerRequest) returns (CheckWinnerResponse);
 }
