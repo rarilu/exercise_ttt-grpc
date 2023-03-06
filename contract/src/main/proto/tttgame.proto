@@ -50,6 +50,15 @@ message CheckWinnerResponse {
 	int32 winner = 1; // -1 if none, otherwise player
 }
 
+// redo operation
+
+message RedoRequest {
+	// No arguments
+}
+
+message RedoResponse {
+	// No arguments
+}
 
 // service
 
@@ -57,4 +66,5 @@ service TTT {
 	rpc CurrentBoard(CurrentBoardRequest) returns (CurrentBoardResponse);
 	rpc Play(PlayRequest) returns (PlayResponse);
 	rpc CheckWinner(CheckWinnerRequest) returns (CheckWinnerResponse);
+	rpc Redo(RedoRequest) returns (RedoResponse);
 }

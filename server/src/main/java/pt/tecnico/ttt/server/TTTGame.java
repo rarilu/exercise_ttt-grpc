@@ -6,6 +6,8 @@ public class TTTGame {
 	private char board[][];
 	private int numPlays = 0;
 	private int nextPlayer = 0;
+	private int lastRow = -1;
+	private int lastColumn = -1;
 	
 	public TTTGame() {
 		this.resetBoard();
@@ -21,6 +23,9 @@ public class TTTGame {
 	
 
 	public PlayResult play(int row, int column, int player) {
+		this.lastRow = row;
+		this.lastColumn = column;
+
 		if (!(row >=0 && row <3 && column >= 0 && column < 3)) {
 			/* Outside board */
 			return PlayResult.OUT_OF_BOUNDS;
@@ -95,6 +100,12 @@ public class TTTGame {
 
 	}
 	
+	public synchronized void redo() {
+		this.board[lastRow][lastColumn] = (char) ('1' + lastRow * 3 + lastColumn);
+		this.nextPlayer = (nextPlayer + 1) % 2;
+		this.numPlays--;
+	}
+
 	public void resetBoard() {
 		board = new char[][] {
 			{'1', '2', '3'},

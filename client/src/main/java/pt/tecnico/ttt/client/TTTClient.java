@@ -91,6 +91,11 @@ public class TTTClient {
 					if (go == 0) {
 						play_res = PlayResult.UNKNOWN;
 						continue;
+					} else if (go == 10) {
+						play_res = PlayResult.UNKNOWN;
+						stub.redo(RedoRequest.getDefaultInstance());
+						player = (player + 1) % 2;
+						continue;
 					}
 
 					/* Get row index of board. */

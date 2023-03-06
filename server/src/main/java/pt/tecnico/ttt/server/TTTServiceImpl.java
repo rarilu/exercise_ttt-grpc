@@ -40,4 +40,11 @@ public class TTTServiceImpl extends TTTGrpc.TTTImplBase {
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
+
+	@Override
+	public void redo(RedoRequest request, StreamObserver<RedoResponse> responseObserver) {
+		ttt.redo();
+		responseObserver.onNext(RedoResponse.getDefaultInstance());
+		responseObserver.onCompleted();
+	}
 }
